@@ -10,4 +10,4 @@ Under development and not yet usable.
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+MIT. See [LICENSE](LICENSE). Some code is ported from other projects; their notices are in [THIRD-PARTY-LICENSES.md](THIRD-PARTY-LICENSES.md).
