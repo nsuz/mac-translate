@@ -3,7 +3,8 @@ import ApplicationServices
 import SwiftUI
 import TranslateCore
 
-/// The one path from a shortcut press to a translation on screen.
+/// The one path from a piece of text to a translation on screen, entered from the shortcut,
+/// the clipboard, or the Services menu.
 final class TranslationPresenter {
     private let model: AppModel
     private let windows: AppWindows
@@ -22,31 +23,48 @@ final class TranslationPresenter {
             return
         }
         guard AXIsProcessTrusted() else { return windows.showOnboarding() }
-        guard model.isModelAvailable else { return windows.showModels() }
         switch SelectionReader.read() {
         case .empty:
             break
         case .unavailable:
             popover.show(NoticeView("Couldn’t get the selected text."), at: mouseAnchor())
         case .selected(let selection):
-            let anchor = selection.bounds ?? mouseAnchor()
-            let translation = Translation()
-            let view = TranslationView(
-                translation: translation,
-                width: width(for: selection.text),
-                maxHeight: maxHeight(near: anchor),
-                onClose: { [popover] in popover.close() }
-            )
-            popover.show(view, at: anchor)
-            translating = Task { await translate(selection.text, into: translation) }
+            present(selection.text, at: selection.bounds ?? mouseAnchor())
         }
+    }
+
+    func translateClipboard() {
+        guard let text = NSPasteboard.general.string(forType: .string), text.contains(where: { !$0.isWhitespace }) else {
+            return popover.show(NoticeView("The clipboard has no text."), at: mouseAnchor())
+        }
+        present(text, at: mouseAnchor())
+    }
+
+    /// For text that arrives without a position, such as from the Services menu.
+    func translate(_ text: String) {
+        present(text, at: mouseAnchor())
+    }
+
+    private func present(_ text: String, at anchor: CGRect) {
+        guard text.contains(where: { !$0.isWhitespace }) else { return }
+        guard model.isModelAvailable else { return windows.showModels() }
+        let translation = Translation()
+        let view = TranslationView(
+            translation: translation,
+            width: width(for: text),
+            maxHeight: maxHeight(near: anchor),
+            onClose: { [popover] in popover.close() }
+        )
+        popover.show(view, at: anchor)
+        translating = Task { await translate(text, into: translation) }
     }
 
     private func translate(_ text: String, into translation: Translation) async {
         do {
             let translator = try await model.translator()
             translation.status = .translating
-            let request = TranslationRequest(text: text, target: .automaticTarget(for: text), form: .polite)
+            let defaults = UserDefaults.standard
+            let request = TranslationRequest(text: text, target: defaults.targetLanguage.language(for: text), form: defaults.japaneseForm)
             for try await piece in try await translator.translate(request) {
                 translation.text += piece
             }

@@ -6,11 +6,31 @@ struct TranslateApp: App {
 
     var body: some Scene {
         MenuBarExtra("Translate", systemImage: "translate") {
-            Button("Models…") { delegate.showModels() }
-            Divider()
-            Button("Quit Translate") { NSApp.terminate(nil) }
-                .keyboardShortcut("q")
+            MenuBarMenu(delegate: delegate)
         }
         .menuBarExtraStyle(.menu)
+
+        Settings {
+            SettingsView(model: delegate.model)
+        }
+    }
+}
+
+private struct MenuBarMenu: View {
+    let delegate: AppDelegate
+    @Environment(\.openSettings) private var openSettings
+
+    var body: some View {
+        Button("Translate Clipboard") { delegate.translateClipboard() }
+        Button("Models…") { delegate.showModels() }
+        // `SettingsLink` does nothing from a menu bar extra while the app is inactive.
+        Button("Settings…") {
+            NSApp.activate()
+            openSettings()
+        }
+        .keyboardShortcut(",")
+        Divider()
+        Button("Quit Translate") { NSApp.terminate(nil) }
+            .keyboardShortcut("q")
     }
 }

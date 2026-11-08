@@ -17,12 +17,28 @@
     },
   ],
   "files": [
-    { "kind": "folder", "path": "Translate", "target-membership": [ "Translate" ] },
+    {
+      "kind": "folder",
+      "path": "Translate",
+      "target-membership": [
+        "Translate",
+      ],
+      "membership-exceptions": [
+        {
+          "target": "Translate",
+          "exclusions": [
+            "Info.plist",
+          ],
+        },
+      ],
+    },
+    { "kind": "folder", "path": "TranslateTests", "target-membership": [ "TranslateTests" ] },
     {
       "kind": "group",
       "name": "Products",
       "children": [
         { "path": "<PRODUCTS>/Translate.app", "id": "25692BF6309FD5A100C375C9", "type": "wrapper.application", "index": false },
+        { "path": "<PRODUCTS>/TranslateTests.xctest", "id": "25692BF7309FD5A100C375C9", "type": "wrapper.cfbundle", "index": false },
       ],
     },
   ],
@@ -56,6 +72,7 @@
         "ENABLE_HARDENED_RUNTIME": "YES",
         "ENABLE_PREVIEWS": "YES",
         "GENERATE_INFOPLIST_FILE": "YES",
+        "INFOPLIST_FILE": "Translate/Info.plist",
         "INFOPLIST_KEY_LSUIElement": "YES",
         "INFOPLIST_KEY_NSHumanReadableCopyright": "",
         "LD_RUNPATH_SEARCH_PATHS": [
@@ -71,6 +88,35 @@
         "SWIFT_EMIT_LOC_STRINGS": "YES",
         "SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY": "YES",
         "SWIFT_VERSION": "6.0",
+      },
+    }, {
+      "name": "TranslateTests",
+      "id": "25692BF8309FD5A100C375C9",
+      "product": "Products/TranslateTests.xctest",
+      "product-type": "bundle.unit-test",
+      "test-host-target": "Translate",
+      "dependencies": [
+        "Translate",
+      ],
+      "build-phases": [
+        "compile-sources",
+        "frameworks",
+        "resources",
+      ],
+      "build-settings": {
+        "BUNDLE_LOADER": "$(TEST_HOST)",
+        "CODE_SIGN_STYLE": "Automatic",
+        "CURRENT_PROJECT_VERSION": "1",
+        "GENERATE_INFOPLIST_FILE": "YES",
+        "MARKETING_VERSION": "1.0",
+        "PRODUCT_BUNDLE_IDENTIFIER": "dev.nsuz.TranslateTests",
+        "PRODUCT_NAME": "$(TARGET_NAME)",
+        "SWIFT_APPROACHABLE_CONCURRENCY": "YES",
+        "SWIFT_DEFAULT_ACTOR_ISOLATION": "MainActor",
+        "SWIFT_EMIT_LOC_STRINGS": "NO",
+        "SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY": "YES",
+        "SWIFT_VERSION": "6.0",
+        "TEST_HOST": "$(BUILT_PRODUCTS_DIR)/Translate.app/Contents/MacOS/Translate",
       },
     },
   ],

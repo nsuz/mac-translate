@@ -4,7 +4,7 @@ import TranslateCore
 struct ModelsView: View {
     let model: AppModel
     let done: () -> Void
-    @AppStorage("acceptedLicense") private var acceptedLicense = false
+    @AppStorage(Preferences.acceptedLicense) private var acceptedLicense = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {

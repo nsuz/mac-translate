@@ -14,6 +14,12 @@ final class AppModel {
 
     let store = ModelStore()
     let variant = ModelVariant.plamo3Translate0_8b
+    /// Held here rather than only in defaults because the registration must follow changes.
+    var hotKey = UserDefaults.standard.hotKey {
+        didSet { UserDefaults.standard.hotKey = hotKey }
+    }
+    /// While a new shortcut is being recorded, the current one must not fire.
+    var isRecordingShortcut = false
     private(set) var isModelAvailable: Bool
     private(set) var download: Download?
     private var current: ModelDownload?
