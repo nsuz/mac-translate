@@ -1,25 +1,12 @@
 import Foundation
 import TranslateCore
 
-enum TargetPreference: String, CaseIterable {
-    case automatic = "auto"
-    case japanese = "ja"
-    case english = "en"
-
-    func language(for text: String) -> Language {
-        switch self {
-        case .automatic: .automaticTarget(for: text)
-        case .japanese: .ja
-        case .english: .en
-        }
-    }
-}
-
 /// The `UserDefaults` keys, named once so the views' `@AppStorage` and the code that reads
 /// the values at translation time cannot drift apart.
 enum Preferences {
     static let hotKey = "hotKey"
-    static let targetLanguage = "targetLanguage"
+    static let primaryLanguage = "primaryLanguage"
+    static let secondaryLanguage = "secondaryLanguage"
     static let japaneseForm = "japaneseForm"
     static let acceptedLicense = "acceptedLicense"
 }
@@ -31,8 +18,12 @@ extension UserDefaults {
         set { set(try? JSONEncoder().encode(newValue), forKey: Preferences.hotKey) }
     }
 
-    var targetLanguage: TargetPreference {
-        string(forKey: Preferences.targetLanguage).flatMap(TargetPreference.init(rawValue:)) ?? .automatic
+    var primaryLanguage: Language {
+        string(forKey: Preferences.primaryLanguage).flatMap(Language.init(rawValue:)) ?? .ja
+    }
+
+    var secondaryLanguage: Language {
+        string(forKey: Preferences.secondaryLanguage).flatMap(Language.init(rawValue:)) ?? .en
     }
 
     var japaneseForm: JapaneseForm {

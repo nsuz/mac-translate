@@ -50,7 +50,8 @@ final class TranslationPresenter {
             let translator = try await model.translator()
             translation.status = .translating
             let defaults = UserDefaults.standard
-            let request = TranslationRequest(text: text, target: defaults.targetLanguage.language(for: text), form: defaults.japaneseForm)
+            let target = Language.target(for: text, primary: defaults.primaryLanguage, secondary: defaults.secondaryLanguage)
+            let request = TranslationRequest(text: text, target: target, form: defaults.japaneseForm)
             for try await piece in try await translator.translate(request) {
                 translation.text += piece
             }
