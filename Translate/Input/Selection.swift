@@ -14,6 +14,14 @@ enum SelectionResult {
     case empty
     /// The focused element exposes neither the AppKit nor the WebKit path.
     case unavailable
+
+    var text: String? {
+        if case .selected(let selection) = self { selection.text } else { nil }
+    }
+
+    var bounds: CGRect? {
+        if case .selected(let selection) = self { selection.bounds } else { nil }
+    }
 }
 
 /// Reads the selection of the focused element through the Accessibility API, trying the

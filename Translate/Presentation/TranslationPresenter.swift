@@ -25,21 +25,19 @@ final class TranslationPresenter {
         }
         guard !isCopying else { return }
         guard AXIsProcessTrusted() else { return windows.showOnboarding() }
-        switch SelectionReader.read() {
-        case .empty:
-            break
-        case .unavailable:
-            isCopying = true
-            Task {
-                defer { isCopying = false }
-                if let text = await CopiedSelection.read(), text.contains(where: { !$0.isWhitespace }) {
-                    present(text, at: mouseAnchor())
-                } else {
-                    popover.show(NoticeView("Couldn’t get the selected text."), at: mouseAnchor())
-                }
+        // Accessibility gives the position; the copy gives the words, with their list markers.
+        let selection = SelectionReader.read()
+        // Some editors copy the current line when nothing is selected; do not ask them to.
+        if case .empty = selection { return }
+        isCopying = true
+        Task {
+            defer { isCopying = false }
+            let copied = await CopiedSelection.read()
+            if let text = copied?.text ?? selection.text, text.contains(where: { !$0.isWhitespace }) {
+                present(text, at: selection.bounds ?? mouseAnchor())
+            } else if copied == nil, case .unavailable = selection {
+                popover.show(NoticeView("Couldn’t get the selected text."), at: mouseAnchor())
             }
-        case .selected(let selection):
-            present(selection.text, at: selection.bounds ?? mouseAnchor())
         }
     }
 

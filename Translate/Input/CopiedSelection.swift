@@ -1,14 +1,24 @@
 import AppKit
 import Carbon
 
-/// The way out for apps whose selection Accessibility cannot read: ask the app itself to
-/// copy it, then put the pasteboard back as far as can be told. `changeCount` only says
-/// that someone wrote, not who, so the old contents go back only when the frontmost app
-/// stayed the same and nothing else wrote between the read and the restore.
+/// The selection as the app itself copies it, HTML included, which is the only way to learn
+/// that it was a list. The pasteboard is put back afterwards as far as can be told:
+/// `changeCount` only says that someone wrote, not who, so the old contents go back only
+/// when the frontmost app stayed the same and nothing else wrote between the read and the restore.
 enum CopiedSelection {
+    struct Contents {
+        var html: String?
+        var string: String?
+
+        /// List markers from the HTML when there is any; otherwise the plain string.
+        var text: String? {
+            html.flatMap(StructuredText.plain(fromHTML:)) ?? string
+        }
+    }
+
     /// Returns nil when nothing arrived within 200 ms, which is also what an empty selection
     /// looks like, or when the frontmost app changed meanwhile. The pasteboard is then left alone.
-    static func read() async -> String? {
+    static func read() async -> Contents? {
         let pasteboard = NSPasteboard.general
         let frontmost = NSWorkspace.shared.frontmostApplication?.processIdentifier
         let before = pasteboard.changeCount
@@ -19,9 +29,9 @@ enum CopiedSelection {
         }
         let copied = pasteboard.changeCount
         guard copied != before, NSWorkspace.shared.frontmostApplication?.processIdentifier == frontmost else { return nil }
-        let text = pasteboard.string(forType: .string)
+        let contents = Contents(html: pasteboard.string(forType: .html), string: pasteboard.string(forType: .string))
         if pasteboard.changeCount == copied { snapshot.restore() }
-        return text
+        return contents
     }
 
     /// Needs the Accessibility permission, the same one the Accessibility read already has.
