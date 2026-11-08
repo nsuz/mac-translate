@@ -6,11 +6,13 @@ import TranslateCore
 /// The one path from a shortcut press to a translation on screen.
 final class TranslationPresenter {
     private let model: AppModel
+    private let windows: AppWindows
     private let popover = Popover()
     private var translating: Task<Void, Never>?
 
-    init(model: AppModel) {
+    init(model: AppModel, windows: AppWindows) {
         self.model = model
+        self.windows = windows
         popover.onClose = { [weak self] in self?.translating?.cancel() }
     }
 
@@ -19,10 +21,8 @@ final class TranslationPresenter {
             popover.close()
             return
         }
-        guard AXIsProcessTrusted() else {
-            popover.show(NoticeView("Translate needs Accessibility access to read the selection."), at: mouseAnchor())
-            return
-        }
+        guard AXIsProcessTrusted() else { return windows.showOnboarding() }
+        guard model.isModelAvailable else { return windows.showModels() }
         switch SelectionReader.read() {
         case .empty:
             break

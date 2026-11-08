@@ -6,6 +6,8 @@ struct TranslateApp: App {
 
     var body: some Scene {
         MenuBarExtra("Translate", systemImage: "translate") {
+            Button("Models…") { delegate.showModels() }
+            Divider()
             Button("Quit Translate") { NSApp.terminate(nil) }
                 .keyboardShortcut("q")
         }
