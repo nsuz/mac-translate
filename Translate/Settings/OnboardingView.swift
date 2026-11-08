@@ -12,11 +12,11 @@ struct OnboardingView: View {
             VStack(alignment: .leading, spacing: 6) {
                 Text("Translate the text you select in any app, right where you are.")
                 Text("Nothing leaves your Mac. Translation runs on-device with PLaMo 3 Translate, and it can be wrong.")
-                Text("Press ⌥T on selected text to see the translation.")
+                Text("Press \(model.hotKey.display) on selected text to see the translation.")
             }
             step("Accessibility", done: isTrusted) {
                 Text("Translate reads the selected text through Accessibility.")
-                Button("Continue") {
+                Button("Allow Access…") {
                     _ = AXIsProcessTrustedWithOptions(["AXTrustedCheckOptionPrompt" as CFString: true] as CFDictionary)
                 }
             }

@@ -18,13 +18,13 @@ final class AppWindows: NSObject, NSWindowDelegate {
     }
 
     func showOnboarding() {
-        show(.onboarding, title: "Welcome to Translate") {
+        show(.onboarding, title: String(localized: "Welcome to Translate")) {
             OnboardingView(model: model, openModels: { [self] in showModels() }, done: { [self] in close(.onboarding) })
         }
     }
 
     func showModels() {
-        show(.models, title: "Models") {
+        show(.models, title: String(localized: "Models")) {
             ModelsView(model: model, done: { [self] in close(.models) })
         }
     }

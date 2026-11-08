@@ -11,8 +11,10 @@ struct ShortcutRecorder: View {
     @State private var monitor: Any?
 
     var body: some View {
-        Button(isRecording ? "Type a shortcut…" : combination.display) {
+        Button {
             isRecording ? stopRecording() : startRecording()
+        } label: {
+            isRecording ? Text("Type a shortcut…") : Text(verbatim: combination.display)
         }
         .onDisappear(perform: stopRecording)
     }

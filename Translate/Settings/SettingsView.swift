@@ -1,3 +1,4 @@
+import AppKit
 import SwiftUI
 import TranslateCore
 
@@ -22,6 +23,9 @@ struct SettingsView: View {
                 Text("Polite").tag(JapaneseForm.polite)
                 Text("Plain").tag(JapaneseForm.plain)
             }
+            Section {
+                Button("Acknowledgements…") { NSWorkspace.shared.open(Self.acknowledgements) }
+            }
         }
         .formStyle(.grouped)
         .frame(width: 400)
@@ -34,6 +38,8 @@ struct SettingsView: View {
             }
         }
     }
+
+    private static let acknowledgements = Bundle.main.url(forResource: "THIRD-PARTY-LICENSES", withExtension: "md")!
 
     private static let languagesByName = Language.allCases.sorted {
         $0.localizedName.localizedStandardCompare($1.localizedName) == .orderedAscending

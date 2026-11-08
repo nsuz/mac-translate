@@ -1,0 +1,496 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "Accessibility": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "アクセシビリティ"
+          }
+        }
+      }
+    },
+    "Acknowledgements…": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "謝辞…"
+          }
+        }
+      }
+    },
+    "Allow Access…": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "アクセスを許可…"
+          }
+        }
+      }
+    },
+    "Cancel": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "キャンセル"
+          }
+        }
+      }
+    },
+    "Commercial use above that requires a separate agreement with PFN.": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "それを超える商用利用には、PFN との別途の契約が必要です。"
+          }
+        }
+      }
+    },
+    "Commercial use with revenue of 1 billion yen or less is free after registering with PFN.": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "直近の売上高が 10 億円以下の商用利用は、PFN に登録すれば無料です。"
+          }
+        }
+      }
+    },
+    "Copied": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "コピーしました"
+          }
+        }
+      }
+    },
+    "Copy": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "コピー"
+          }
+        }
+      }
+    },
+    "Copy Translation": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "訳文をコピー"
+          }
+        }
+      }
+    },
+    "Couldn’t Translate": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "翻訳できませんでした"
+          }
+        }
+      }
+    },
+    "Couldn’t get the selected text.": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "選択したテキストを取得できませんでした。"
+          }
+        }
+      }
+    },
+    "Done": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "完了"
+          }
+        }
+      }
+    },
+    "Download": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ダウンロード"
+          }
+        }
+      }
+    },
+    "Download Model…": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "モデルをダウンロード…"
+          }
+        }
+      }
+    },
+    "Download the model once to start translating.": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "翻訳を始めるには、モデルを一度だけダウンロードします。"
+          }
+        }
+      }
+    },
+    "Downloaded": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ダウンロード済み"
+          }
+        }
+      }
+    },
+    "Full text (English)": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全文（英語）"
+          }
+        }
+      }
+    },
+    "I accept the PLaMo Community License": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PLaMo Community License に同意します"
+          }
+        }
+      }
+    },
+    "Japanese style": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "日本語の文体"
+          }
+        }
+      }
+    },
+    "Loading model…": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "モデルを読み込み中…"
+          }
+        }
+      }
+    },
+    "Model": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "モデル"
+          }
+        }
+      }
+    },
+    "Models": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "モデル"
+          }
+        }
+      }
+    },
+    "Models…": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "モデル…"
+          }
+        }
+      }
+    },
+    "Nothing leaves your Mac. Translation runs on-device with PLaMo 3 Translate, and it can be wrong.": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "翻訳は PLaMo 3 Translate がこの Mac の中で行い、文章が外に出ることはありません。訳文は正確とは限りません。"
+          }
+        }
+      }
+    },
+    "Only part of the text was translated.": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ここまでしか訳していません。"
+          }
+        }
+      }
+    },
+    "PLaMo Community License": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PLaMo Community License"
+          }
+        }
+      }
+    },
+    "Personal and non-commercial use, including academic use, is free with no registration.": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "個人利用と、学術利用を含む非商用利用は、登録なしで無料です。"
+          }
+        }
+      }
+    },
+    "Plain": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "常体"
+          }
+        }
+      }
+    },
+    "Polite": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "敬体"
+          }
+        }
+      }
+    },
+    "Press %@ on selected text to see the translation.": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "テキストを選んで %@ を押すと訳文が出ます。"
+          }
+        }
+      }
+    },
+    "Primary language": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "優先する言語"
+          }
+        }
+      }
+    },
+    "Quit Translate": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Translate を終了"
+          }
+        }
+      }
+    },
+    "Secondary language": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2 番目の言語"
+          }
+        }
+      }
+    },
+    "Settings…": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "設定…"
+          }
+        }
+      }
+    },
+    "Shortcut": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ショートカット"
+          }
+        }
+      }
+    },
+    "Text in the primary language is translated into the secondary one. Everything else is translated into the primary.": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "優先する言語の文章は 2 番目の言語に、それ以外は優先する言語に翻訳します。"
+          }
+        }
+      }
+    },
+    "The downloaded file didn’t match the expected checksum.": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ダウンロードしたファイルのチェックサムが一致しませんでした。"
+          }
+        }
+      }
+    },
+    "The model isn’t available.": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "モデルが利用できません。"
+          }
+        }
+      }
+    },
+    "The selection is too long. Select a shorter passage.": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "選択範囲が長すぎます。短い範囲を選んでください。"
+          }
+        }
+      }
+    },
+    "The server answered with status %lld.": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "サーバーがステータス %lld を返しました。"
+          }
+        }
+      }
+    },
+    "Translate": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Translate"
+          }
+        }
+      }
+    },
+    "Translate reads the selected text through Accessibility.": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Translate は選択したテキストをアクセシビリティ経由で読み取ります。"
+          }
+        }
+      }
+    },
+    "Translate the text you select in any app, right where you are.": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "どのアプリでも、選んだテキストをその場で翻訳します。"
+          }
+        }
+      }
+    },
+    "Try Again": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "やり直す"
+          }
+        }
+      }
+    },
+    "Try again with a different selection.": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "別の範囲を選んでやり直してください。"
+          }
+        }
+      }
+    },
+    "Type a shortcut…": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ショートカットを入力…"
+          }
+        }
+      }
+    },
+    "Verifying…": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "検証中…"
+          }
+        }
+      }
+    },
+    "Welcome to Translate": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Translate へようこそ"
+          }
+        }
+      }
+    },
+    "全文（日本語）": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全文（日本語）"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

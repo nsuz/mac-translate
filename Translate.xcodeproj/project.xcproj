@@ -8,6 +8,7 @@
     "development": "en",
     "supported": [
       "Base",
+      "ja",
     ],
   },
   "packages": [
@@ -19,6 +20,7 @@
   "files": [
     { "kind": "folder", "path": "Translate", "target-membership": [ "Translate" ] },
     { "kind": "folder", "path": "TranslateTests", "target-membership": [ "TranslateTests" ] },
+    { "path": "THIRD-PARTY-LICENSES.md", "target-membership": [ "Translate/resources" ] },
     {
       "kind": "group",
       "name": "Products",
@@ -64,7 +66,7 @@
           "$(inherited)",
           "@executable_path/../Frameworks",
         ],
-        "MARKETING_VERSION": "1.0",
+        "MARKETING_VERSION": "0.1.0",
         "PRODUCT_BUNDLE_IDENTIFIER": "dev.nsuz.Translate",
         "PRODUCT_NAME": "$(TARGET_NAME)",
         "STRING_CATALOG_GENERATE_SYMBOLS": "YES",
@@ -93,7 +95,7 @@
         "CODE_SIGN_STYLE": "Automatic",
         "CURRENT_PROJECT_VERSION": "1",
         "GENERATE_INFOPLIST_FILE": "YES",
-        "MARKETING_VERSION": "1.0",
+        "MARKETING_VERSION": "0.1.0",
         "PRODUCT_BUNDLE_IDENTIFIER": "dev.nsuz.TranslateTests",
         "PRODUCT_NAME": "$(TARGET_NAME)",
         "SWIFT_APPROACHABLE_CONCURRENCY": "YES",

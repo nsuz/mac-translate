@@ -70,7 +70,7 @@ struct TranslationView: View {
         NSPasteboard.general.clearContents()
         NSPasteboard.general.setString(translation.text, forType: .string)
         withAnimation { copied = true }
-        AccessibilityNotification.Announcement("Copied").post()
+        AccessibilityNotification.Announcement(String(localized: "Copied")).post()
     }
 
     private func message(for error: any Error) -> LocalizedStringKey {
