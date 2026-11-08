@@ -20,11 +20,17 @@ enum SelectionResult {
 /// AppKit attributes first and the WebKit text-marker attributes second.
 enum SelectionReader {
     static func read() -> SelectionResult {
-        guard let element = focusedElement() else { return .unavailable }
+        guard let element = focusedElement() else {
+            logger.debug("no focused element")
+            return .unavailable
+        }
         let marker = attribute(element, "AXSelectedTextMarkerRange")
         guard let text = attribute(element, kAXSelectedTextAttribute) as? String
             ?? marker.flatMap({ parameterized(element, "AXStringForTextMarkerRange", $0) as? String })
-        else { return .unavailable }
+        else {
+            logger.debug("no selection path in \(owner(of: element), privacy: .public): attributes \(names(of: element), privacy: .public)")
+            return .unavailable
+        }
         guard text.contains(where: { !$0.isWhitespace }) else { return .empty }
 
         let rangeBounds = attribute(element, kAXSelectedTextRangeAttribute)
@@ -49,6 +55,15 @@ enum SelectionReader {
         AXUIElementGetPid(element, &pid)
         let role = attribute(element, kAXRoleAttribute) as? String ?? "?"
         return "\(NSRunningApplication(processIdentifier: pid)?.bundleIdentifier ?? "?") \(role)"
+    }
+
+    /// Attribute names only, never values: enough to see which paths an app offers.
+    private static func names(of element: AXUIElement) -> String {
+        var attributes: CFArray?
+        var parameterized: CFArray?
+        AXUIElementCopyAttributeNames(element, &attributes)
+        AXUIElementCopyParameterizedAttributeNames(element, &parameterized)
+        return ((attributes as? [String] ?? []) + (parameterized as? [String] ?? []).map { $0 + "(…)" }).joined(separator: " ")
     }
 
     private static func attribute(_ element: AXUIElement, _ name: String) -> CFTypeRef? {

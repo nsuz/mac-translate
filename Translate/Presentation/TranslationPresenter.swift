@@ -9,6 +9,8 @@ final class TranslationPresenter {
     private let windows: AppWindows
     private let popover = Popover()
     private var translating: Task<Void, Never>?
+    /// A copy in flight cannot be taken back, so a second press must not start another.
+    private var isCopying = false
 
     init(model: AppModel, windows: AppWindows) {
         self.model = model
@@ -21,12 +23,21 @@ final class TranslationPresenter {
             popover.close()
             return
         }
+        guard !isCopying else { return }
         guard AXIsProcessTrusted() else { return windows.showOnboarding() }
         switch SelectionReader.read() {
         case .empty:
             break
         case .unavailable:
-            popover.show(NoticeView("Couldn’t get the selected text."), at: mouseAnchor())
+            isCopying = true
+            Task {
+                defer { isCopying = false }
+                if let text = await CopiedSelection.read(), text.contains(where: { !$0.isWhitespace }) {
+                    present(text, at: mouseAnchor())
+                } else {
+                    popover.show(NoticeView("Couldn’t get the selected text."), at: mouseAnchor())
+                }
+            }
         case .selected(let selection):
             present(selection.text, at: selection.bounds ?? mouseAnchor())
         }
