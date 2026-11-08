@@ -7,6 +7,8 @@ struct TranslationView: View {
     let width: CGFloat
     let maxHeight: CGFloat
     let onClose: () -> Void
+    /// A click on the copy button changes nothing on screen by itself, so the icon answers.
+    @State private var copied = false
 
     var body: some View {
         Group {
@@ -23,12 +25,23 @@ struct TranslationView: View {
                         footer
                         Spacer()
                         Button(action: copy) {
-                            Image(systemName: "document.on.document")
+                            // Both symbols reserve their space, so swapping them never moves the layout.
+                            ZStack {
+                                Image(systemName: "document.on.document").hidden()
+                                Image(systemName: "checkmark").hidden()
+                                Image(systemName: copied ? "checkmark" : "document.on.document")
+                                    .contentTransition(.symbolEffect(.replace, options: .speed(2)))
+                            }
                         }
                         .buttonStyle(.borderless)
                         .foregroundStyle(.secondary)
                         .help("Copy")
-                        .accessibilityLabel("Copy Translation")
+                        .accessibilityLabel(copied ? "Copied" : "Copy Translation")
+                        .task(id: copied) {
+                            guard copied else { return }
+                            try? await Task.sleep(for: .seconds(1.5))
+                            withAnimation { copied = false }
+                        }
                     }
                 }
             }
@@ -56,6 +69,8 @@ struct TranslationView: View {
     private func copy() {
         NSPasteboard.general.clearContents()
         NSPasteboard.general.setString(translation.text, forType: .string)
+        withAnimation { copied = true }
+        AccessibilityNotification.Announcement("Copied").post()
     }
 
     private func message(for error: any Error) -> LocalizedStringKey {
