@@ -3,8 +3,7 @@ import ApplicationServices
 import SwiftUI
 import TranslateCore
 
-/// The one path from a piece of text to a translation on screen, entered from the shortcut,
-/// the clipboard, or the Services menu.
+/// The one path from a shortcut press to a translation on screen.
 final class TranslationPresenter {
     private let model: AppModel
     private let windows: AppWindows
@@ -33,20 +32,7 @@ final class TranslationPresenter {
         }
     }
 
-    func translateClipboard() {
-        guard let text = NSPasteboard.general.string(forType: .string), text.contains(where: { !$0.isWhitespace }) else {
-            return popover.show(NoticeView("The clipboard has no text."), at: mouseAnchor())
-        }
-        present(text, at: mouseAnchor())
-    }
-
-    /// For text that arrives without a position, such as from the Services menu.
-    func translate(_ text: String) {
-        present(text, at: mouseAnchor())
-    }
-
     private func present(_ text: String, at anchor: CGRect) {
-        guard text.contains(where: { !$0.isWhitespace }) else { return }
         guard model.isModelAvailable else { return windows.showModels() }
         let translation = Translation()
         let view = TranslationView(

@@ -21,7 +21,6 @@ private struct MenuBarMenu: View {
     @Environment(\.openSettings) private var openSettings
 
     var body: some View {
-        Button("Translate Clipboard") { delegate.translateClipboard() }
         Button("Models…") { delegate.showModels() }
         // `SettingsLink` does nothing from a menu bar extra while the app is inactive.
         Button("Settings…") {

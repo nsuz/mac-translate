@@ -7,7 +7,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     let model = AppModel()
     private lazy var windows = AppWindows(model: model)
     private lazy var presenter = TranslationPresenter(model: model, windows: windows)
-    private var serviceProvider: ServiceProvider?
     private var hotKey: HotKey?
     private var hotKeyChanges: Task<Void, Never>?
     private var terminationAllowed = false
@@ -26,9 +25,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 if !isRecording { registerHotKey(combination) }
             }
         }
-        let serviceProvider = ServiceProvider { [presenter] text in presenter.translate(text) }
-        self.serviceProvider = serviceProvider
-        NSApp.servicesProvider = serviceProvider
         if !AXIsProcessTrusted() {
             windows.showOnboarding()
         } else if !model.isModelAvailable {
@@ -45,10 +41,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     func showModels() {
         windows.showModels()
-    }
-
-    func translateClipboard() {
-        presenter.translateClipboard()
     }
 
     private func registerHotKey(_ combination: KeyCombination) {

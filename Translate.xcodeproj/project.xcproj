@@ -17,21 +17,7 @@
     },
   ],
   "files": [
-    {
-      "kind": "folder",
-      "path": "Translate",
-      "target-membership": [
-        "Translate",
-      ],
-      "membership-exceptions": [
-        {
-          "target": "Translate",
-          "exclusions": [
-            "Info.plist",
-          ],
-        },
-      ],
-    },
+    { "kind": "folder", "path": "Translate", "target-membership": [ "Translate" ] },
     { "kind": "folder", "path": "TranslateTests", "target-membership": [ "TranslateTests" ] },
     {
       "kind": "group",
@@ -72,7 +58,6 @@
         "ENABLE_HARDENED_RUNTIME": "YES",
         "ENABLE_PREVIEWS": "YES",
         "GENERATE_INFOPLIST_FILE": "YES",
-        "INFOPLIST_FILE": "Translate/Info.plist",
         "INFOPLIST_KEY_LSUIElement": "YES",
         "INFOPLIST_KEY_NSHumanReadableCopyright": "",
         "LD_RUNPATH_SEARCH_PATHS": [
