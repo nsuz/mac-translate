@@ -15,10 +15,13 @@ rm -rf "$dist"
 mkdir -p "$dist"
 
 # Automatic signing only knows ad-hoc here (no team in the project), so a Developer ID
-# identity is applied manually with the team parsed from its "(TEAMID)" suffix.
+# identity is applied manually with the team parsed from its "(TEAMID)" suffix. The build
+# action, unlike archive, omits the secure timestamp and injects get-task-allow; notarization
+# rejects both, so they are set explicitly.
 signing=(CODE_SIGN_IDENTITY="$identity")
 if [[ $identity =~ '\(([A-Z0-9]+)\)$' ]]; then
-    signing+=(CODE_SIGN_STYLE=Manual DEVELOPMENT_TEAM="$match[1]")
+    signing+=(CODE_SIGN_STYLE=Manual DEVELOPMENT_TEAM="$match[1]"
+              OTHER_CODE_SIGN_FLAGS=--timestamp CODE_SIGN_INJECT_BASE_ENTITLEMENTS=NO)
 fi
 
 xcodebuild -project "$root/Translate.xcodeproj" -scheme Translate -configuration Release \
