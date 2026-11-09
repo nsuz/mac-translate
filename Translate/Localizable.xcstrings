@@ -31,6 +31,16 @@
         }
       }
     },
+    "Approve in System Settings…": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "システム設定で許可…"
+          }
+        }
+      }
+    },
     "Cancel": {
       "localizations": {
         "ja": {
@@ -247,6 +257,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "ここまでしか訳していません。"
+          }
+        }
+      }
+    },
+    "Open at login": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ログイン時に開く"
           }
         }
       }

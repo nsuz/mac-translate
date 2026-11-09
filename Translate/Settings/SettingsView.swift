@@ -1,4 +1,5 @@
 import AppKit
+import ServiceManagement
 import SwiftUI
 import TranslateCore
 
@@ -7,11 +8,18 @@ struct SettingsView: View {
     @AppStorage(Preferences.primaryLanguage) private var primaryLanguage = Language.ja
     @AppStorage(Preferences.secondaryLanguage) private var secondaryLanguage = Language.en
     @AppStorage(Preferences.japaneseForm) private var japaneseForm = JapaneseForm.polite
+    @State private var loginItem = SMAppService.mainApp.status
 
     var body: some View {
         Form {
-            LabeledContent("Shortcut") {
-                ShortcutRecorder(combination: $model.hotKey, isRecording: $model.isRecordingShortcut)
+            Section {
+                LabeledContent("Shortcut") {
+                    ShortcutRecorder(combination: $model.hotKey, isRecording: $model.isRecordingShortcut)
+                }
+                Toggle("Open at login", isOn: Binding(get: { loginItem == .enabled }, set: setOpensAtLogin))
+                if loginItem == .requiresApproval {
+                    Button("Approve in System Settings…", action: SMAppService.openSystemSettingsLoginItems)
+                }
             }
             Section {
                 languagePicker("Primary language", selection: $primaryLanguage)
@@ -29,6 +37,23 @@ struct SettingsView: View {
         }
         .formStyle(.grouped)
         .frame(width: 400)
+        .onAppear(perform: refreshLoginItem)
+        .onReceive(NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification)) { _ in
+            refreshLoginItem()
+        }
+    }
+
+    // The system owns this state: a failed call or a change made in System Settings shows
+    // up by reading the status back, not by remembering what was asked for.
+    private func setOpensAtLogin(_ enabled: Bool) {
+        do {
+            enabled ? try SMAppService.mainApp.register() : try SMAppService.mainApp.unregister()
+        } catch {}
+        refreshLoginItem()
+    }
+
+    private func refreshLoginItem() {
+        loginItem = SMAppService.mainApp.status
     }
 
     private func languagePicker(_ title: LocalizedStringKey, selection: Binding<Language>) -> some View {

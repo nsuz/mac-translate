@@ -24,7 +24,7 @@ On first launch, Translate asks for Accessibility access (System Settings > Priv
 2. Press ⌥T.
 3. Read the translation. Press Esc or click outside to close it. ⌘C copies the whole translation, or just the part you selected inside the popover.
 
-Text in your primary language is translated into your secondary language; anything else is translated into the primary. The defaults are Japanese and English. Change them, the shortcut and the Japanese register (polite or plain) in Settings.
+Text in your primary language is translated into your secondary language; anything else is translated into the primary. The defaults are Japanese and English. Change them, the shortcut, the Japanese register (polite or plain) and whether Translate opens at login in Settings.
 
 ## How it works
 
